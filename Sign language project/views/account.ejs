@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/account.css" />
+  <script>
+    // go to home link
+function goToHome() {
+    window.location.href = "/data";
+  }
+  
+  // nav active links
+  document.addEventListener('DOMContentLoaded', function() {
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+  
+    var navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(function(link) {
+        if (link.getAttribute('href') === page) {
+            link.classList.add('active');
+        }
+    });
+  });
+  
+  // navigation bar
+  function showSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.style.display = 'flex';
+  }
+  function hideSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.style.display = 'none';
+  }
+  
+  // splash screen
+  document.addEventListener("DOMContentLoaded", function() {
+    // Check if the splash screen has been shown before
+    var splashShown = sessionStorage.getItem('splashShown');
+    
+    if (!splashShown) {
+      // If splash screen hasn't been shown before, show it and mark as shown
+      setTimeout(function() {
+        transitionToMain();
+        // Store in session storage that the splash screen has been shown
+        sessionStorage.setItem('splashShown', 'true');
+      }, 5000);
+    } else {
+      // If splash screen has been shown before, immediately transition to main content
+      transitionToMain();
+    }
+  });
+  
+  function transitionToMain() {
+    var splashScreen = document.querySelector('.splash-screen');
+    var mainContent = document.querySelector('.main-content');
+  
+    splashScreen.style.opacity = '0';
+    splashScreen.style.transition = 'opacity 1s ease';
+  
+    setTimeout(function() {
+      splashScreen.style.display = 'none';
+      mainContent.style.display = 'block';
+      mainContent.style.opacity = '1';
+      mainContent.style.transition = 'opacity 1s ease';
+    }, 1000);
+  }
+  
+  
+  
+  
+  
+  
+  </script>
+  <title>Sign Sense</title>
+</head>
+
+<body>
+  <!-- header start -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img onclick="goToHome()" src="/images/favicon.png" alt="" />
+        <h1 onclick="goToHome()">Sign Sense</h1>
+      </div>
+      <div class="nav-links">
+        <a class="hideOnMobile" href="/tutorial">Tutorials</a>
+        <a class="hideOnMobile" href="/practise">Practice</a>
+        <a class="hideOnMobile" href="/signify-chat">Signify</a>
+        <a class="hideOnMobile" href="/about">About</a>
+        <a class="hideOnMobile" href="/contact">Contact</a>
+        <i id="menu-btn" class="ri-menu-line" onclick="showSidebar()"></i>
+      </div>
+    </nav>
+    <div class="sidebar">
+      <i id="menu-close-btn" class="ri-close-line" onclick="hideSidebar()"></i>
+      <a href="/login">Login</a>
+      <a href="/tutorial">Tutorials</a>
+      <a href="/practise">Practice</a>
+      <a href="/signify-chat">Signify</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </header>
+  <!-- HEADER ENDS -->
+
+  <!-- account section starts -->
+  <div class="user-account">
+    <div class="user-picture">
+      <img src="<?php echo htmlspecialchars($user['image']); ?>" alt="Profile Picture" />
+    </div>
+    <div class="user-data">
+      <h2 id="user-name">
+        <?php echo htmlspecialchars($user['fullName']); ?>
+      </h2>
+      <p id="user-email">
+        <?php echo htmlspecialchars($user['email']); ?>
+      </p>
+      <a href="/logout" id="logout-btn">Logout</a>
+    </div>
+  </div>
+  <!-- account section ends -->
+
+  <!-- footer starts -->
+  <footer class="footer">
+    <p>
+      &copy; SignSense | Made with ❤️ by Team Sign Sense
+    </p>
+    <a href="#" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-instagram-fill"></i></a>
+  </footer>
+  <!-- footer ends -->
+</body>
+
+</html>

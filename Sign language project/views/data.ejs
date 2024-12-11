@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/index.css" />
+  <style>
+    .logout-btn {
+      background-color: #f0f0f0; /* Default background color */
+      color: #333; /* Default text color */
+      border: 1px solid #ccc; /* Default border */
+      padding: 10px 20px; /* Padding for the button */
+      cursor: pointer; /* Cursor changes to pointer on hover */
+      transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    }
+    
+    .logout-btn:hover {
+      background-color: #d9534f; /* Background color on hover */
+      color: #fff; /* Text color on hover */
+      border: 1px solid #d43f3a; /* Border color on hover */
+    }
+    
+    .logout-btn:active {
+      background-color: #c9302c; /* Background color when clicking */
+      border: 1px solid #ac2925; /* Border color when clicking */
+    }
+    
+  </style>
+  <script>
+
+    // Function to start counting animation when element is in viewport
+    function startCountAnimation(elementId, finalCount, duration) {
+      var counterElement = document.getElementById(elementId);
+      var count = 0;
+      var increment = (finalCount - count) / duration; // Calculate the increment based on the duration
+  
+      // For counter2, set increment to 1 to ensure whole numbers
+      if (elementId === 'counter2') {
+        increment = 1;
+      }
+  
+      var interval = setInterval(function () {
+        count += increment;
+        if (count >= finalCount) {
+          clearInterval(interval);
+          if (finalCount === 360000000) {
+            counterElement.textContent = '360M+';
+          } else if (finalCount === 70000000) {
+            counterElement.textContent = '70M+';
+          } else {
+            counterElement.textContent = finalCount;
+          }
+        } else {
+          counterElement.textContent = formatCount(count);
+        }
+      }, 0.5); // Adjust the interval for smoother animation
+    }
+  
+    // Function to format the count with appropriate symbols
+    function formatCount(count) {
+      if (count >= 1000000 && count < 1000000000) {
+        return (count / 1000000).toFixed(0) + 'M+';
+      } else if (count >= 70000000 && count < 100000000) {
+        return (count / 1000000).toFixed(0) + 'M+';
+      } else if (count >= 100000 && count < 1000000) {
+        return (count / 1000).toFixed(0) + 'K+';
+      } else if (count >= 1000000000) {
+        return (count / 1000000000).toFixed(0) + 'B+';
+      }
+      return count;
+    }
+  
+    // Function to check if element is in viewport
+    function isInViewport(element) {
+      var bounding = element.getBoundingClientRect();
+      return (
+        bounding.top >= 0 &&
+        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+      );
+    }
+  
+    // Function to handle scroll event
+    function handleScroll() {
+      var counterSection = document.getElementById('people-counter');
+      if (isInViewport(counterSection)) {
+        // Duration of animation (milliseconds)
+        var duration = 400; // Adjust this value as needed
+        startCountAnimation('counter1', 360000000, duration);
+        startCountAnimation('counter2', 130, duration);
+        startCountAnimation('counter3', 70000000, duration);
+        window.removeEventListener('scroll', handleScroll); // Remove event listener once animation starts
+      }
+    }
+  
+    // Add event listener for scroll event
+    window.addEventListener('scroll', handleScroll);
+  
+  
+  
+    // feature images  on the home page
+    // feature1
+    document.addEventListener('DOMContentLoaded', function () {
+      // Function to add the second image
+      function addSecondImage() {
+        const image2 = document.createElement('img');
+        image2.id = 'image2';
+        image2.src = '/images/feature-male-content-creators.jpg';
+        image2.alt = '';
+        image2.loading = 'lazy';
+        image2.style.display = 'none'; // Initially hidden
+        document.querySelector('.feature-content1-img').appendChild(image2);
+      }
+  
+      // Function to toggle the visibility of the images
+      function toggleImages() {
+        const images = document.querySelectorAll('.feature-content1-img img');
+        images.forEach(image => {
+          if (image.style.display === 'none') {
+            image.style.display = 'block';
+          } else {
+            image.style.display = 'none';
+          }
+        });
+      }
+  
+      // Add the second image after the DOM is fully loaded
+      addSecondImage();
+  
+      // Initially, only the first image is visible
+      // After 3 seconds, the images are toggled
+      setTimeout(toggleImages, 3000);
+  
+      // This will repeat the process every 3 seconds
+      setInterval(toggleImages, 3000);
+    });
+    
+    // feature1
+    document.addEventListener('DOMContentLoaded', function () {
+      // Function to add the second image
+      function addSecondImage() {
+        const image4 = document.createElement('img');
+        image4.id = 'image4';
+        image4.src = '/images/feature-learn-back.svg';
+        image4.alt = '';
+        image4.loading = 'lazy';
+        image4.style.display = 'none'; // Initially hidden
+        document.querySelector('.feature-content2-img').appendChild(image4);
+      }
+  
+      // Function to toggle the visibility of the images
+      function toggleImages() {
+        const images = document.querySelectorAll('.feature-content2-img img');
+        images.forEach(image => {
+          if (image.style.display === 'none') {
+            image.style.display = 'block';
+          } else {
+            image.style.display = 'none';
+          }
+        });
+      }
+  
+      // Add the second image after the DOM is fully loaded
+      addSecondImage();
+  
+      // Initially, only the first image is visible
+      // After 3 seconds, the images are toggled
+      setTimeout(toggleImages, 3000);
+  
+      // This will repeat the process every 3 seconds
+      setInterval(toggleImages, 3000);
+    });
+  
+    // go to home link
+  function goToHome() {
+      window.location.href = "#";
+    }
+    
+    // nav active links
+    document.addEventListener('DOMContentLoaded', function() {
+      var path = window.location.pathname;
+      var page = path.split("/").pop();
+    
+      var navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(function(link) {
+          if (link.getAttribute('href') === page) {
+              link.classList.add('active');
+          }
+      });
+    });
+    
+    // navigation bar
+    function showSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'flex';
+    }
+    function hideSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'none';
+    }
+    
+    // splash screen
+    document.addEventListener("DOMContentLoaded", function() {
+      // Check if the splash screen has been shown before
+      var splashShown = sessionStorage.getItem('splashShown');
+      
+      if (!splashShown) {
+        // If splash screen hasn't been shown before, show it and mark as shown
+        setTimeout(function() {
+          transitionToMain();
+          // Store in session storage that the splash screen has been shown
+          sessionStorage.setItem('splashShown', 'true');
+        }, 5000);
+      } else {
+        // If splash screen has been shown before, immediately transition to main content
+        transitionToMain();
+      }
+    });
+    
+    function transitionToMain() {
+      var splashScreen = document.querySelector('.splash-screen');
+      var mainContent = document.querySelector('.main-content');
+    
+      splashScreen.style.opacity = '0';
+      splashScreen.style.transition = 'opacity 1s ease';
+    
+      setTimeout(function() {
+        splashScreen.style.display = 'none';
+        mainContent.style.display = 'block';
+        mainContent.style.opacity = '1';
+        mainContent.style.transition = 'opacity 1s ease';
+      }, 1000);
+    }
+    
+    
+    
+    
+    
+    
+  
+  
+  </script>
+  <title>Sign Sense - Home</title>
+  
+</head>
+
+<body>
+  <!-- splash screen -->
+  <div class="splash-screen">
+    <img
+      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGRhdGEtbmFtZT0iTGF5ZXIgMSIgdmlld0JveD0iMCAwIDUxMiA1MTIiPjxkZWZzPjxjbGlwUGF0aCBpZD0iYSI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9Im5vbmUiLz48L2NsaXBQYXRoPjxjbGlwUGF0aCBpZD0iYiI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTUxLjk5OCwyMjUuNzEyYzAsMTEyLjY2Niw5MS4zMzUsMjA0LjAwMSwyMDQuMDAyLDIwNC4wMDFzMjA0LjAwMi05MS4zMzUsMjA0LjAwMi0yMDQuMDAxQzQ2MC4wMDIsMTEzLjA0NCwzNjguNjY3LDIxLjcxLDI1NiwyMS43MVM1MS45OTgsMTEzLjA0NCw1MS45OTgsMjI1LjcxMiIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNhKSIgZmlsbD0iIzAwMDAwMCIgY2xhc3M9ImNvbG9yMDAwIHN2Z1NoYXBlIj48ZyBjbGlwLXBhdGg9InVybCgjYSkiIGZpbGw9IiMwMDAwMDAiIGNsYXNzPSJjb2xvcjAwMCBzdmdTaGFwZSI+PHBhdGggZmlsbD0iI2ZmZjllNyIgZD0iTTQ2MC4wMDE1LDIyNS43MTE3YzAsMTEyLjY2Ny05MS4zMzQsMjA0LjAwMS0yMDQuMDAxLDIwNC4wMDFzLTIwNC4wMDItOTEuMzM0LTIwNC4wMDItMjA0LjAwMSw5MS4zMzUtMjA0LjAwMiwyMDQuMDAyLTIwNC4wMDIsMjA0LjAwMSw5MS4zMzUsMjA0LjAwMSwyMDQuMDAyIiBjbGFzcz0iY29sb3JmZmY5ZTcgc3ZnU2hhcGUiLz48cGF0aCBmaWxsPSIjNWYzZDE2IiBkPSJNMTUyLjE1NzcgNDY4LjI0MDdjLTIuOTg0LTEuMzEyLTQuNDY5LTEuOTkyLTcuNDItMy40MDItMS4xMjQtMTAuODkxLTEuODI5LTIxLjQ3NS0yLjEzOS0zMi40MTktLjAwNi0uNDkxLS4wMTUtMS4yODktLjAyLTIuMzkzLS4wMDEtLjQ5LjAwNC0xLjI1OS4wMjMtMi4zMDJxLTcuOTY4IDEzLjgtMTUuOTMzIDI3LjYwMmMtMi4zNy0xLjM2OS0zLjU1LTIuMDctNS44OTItMy41MDZxMTEuMzYyNS0xOC41NDc1IDIyLjczLTM3LjA5MmMyLjY4MiAxLjY0MyA0LjAzNCAyLjQzOSA2Ljc2IDMuOTc3YTI1MC41MTQ5MiAyNTAuNTE0OTIgMCAwMC45NjMgMjkuNDE2Yy4wMjMuMjQ2LjE2MiAyLjA1NC41MSA1LjQzNGwxMi44OTQtMjcuNDNjMi4wMDEuOTQxIDMuMDA2IDEuMzk4IDUuMDI0IDIuMjg2cS04Ljc0OTUyIDE5LjkxNC0xNy41IDM5LjgyOU0xOTYuMDYzIDQ4My4wNDI4Yy0zLjQzOS0uODI4LTUuMTU0LTEuMjcxLTguNTctMi4yMTctLjMxLTQuMzg1LS40MzYtNi41NzUtLjYzLTEwLjk0OC02LjUyOS0xLjkwNy05Ljc3LTIuOTc0LTE2LjE4Ny01LjMzMy0yLjczOCAzLjQwOC00LjEzMiA1LjA5Ny02Ljk3MSA4LjQ0NS0yLjY2My0xLjAyMS0zLjk4OS0xLjU1LTYuNjI5LTIuNjQ3IDEwLjA4NS0xMS41MjYgMTkuNTU4LTIzLjI5NCAyOC42NTItMzUuNjE3IDMuMjI5IDEuMTI0IDQuODUzIDEuNjUzIDguMTE1IDIuNjQ1LjExNiAxNS4zMTYuODU2IDMwLjQxNiAyLjIyIDQ1LjY3Mm0tOS40MzgtMTkuNzg2Yy0uMTY3LTguMTYtLjE1MS0xMi4yMjguMDc4LTIwLjMyNy00LjYzNSA2LjY0Ni03LjA0NCA5LjkyNi0xMi4wNDIgMTYuMzgxIDQuNzU0IDEuNzA1IDcuMTQ4IDIuNDk0IDExLjk2NCAzLjk0Nk0yNDUuODQ4MSA0OTAuMDQzYy0zLjM1My0uMTQ1LTUuMDI5LS4yNDUtOC4zNzYtLjQ5OHExLjQzNy0xOC45ODcgMi44NzYtMzcuOTc1LTYuODY4NTEgMTguNzA2NS0xNS40NTggMzYuNzE4Yy0xLjcxNC0uMjE0LTIuNTctLjMyOC00LjI4MS0uNTY5cS0zLjYxMDUtMTkuNjA5NS01LjM5Ni0zOS40OTYtMy41ODUgMTguNzAzNS03LjE2OCAzNy40MDdjLTIuNjUtLjUwNy0zLjk3MS0uNzc4LTYuNjExLTEuMzU1cTQuNjQ0LTIxLjI1MDUgOS4yODktNDIuNTAxYzQuMjEyLjkyIDYuMzI4IDEuMzI3IDEwLjU3MiAyLjAzNyAxLjA1MyA5LjY3IDIuNDk1IDE5LjM5MSA0LjI5MiAyOC45NTEgNC4xMjUtOC43OTQgNy45NTEtMTcuODI4IDExLjM5Mi0yNi45MTIgNC4yOTguNCA2LjQ1LjU0NyAxMC43NTguNzM0cS0uOTQ1IDIxLjcyOS0xLjg4OSA0My40NTlNMjkxLjYxNTM5IDQ4OC4wMDkzYy0zLjQ5Mi40NjUtNS4yNDEuNjY3LTguNzQzIDEuMDEzLTEuODYtMy45NzktMi43NjEtNS45NzYtNC41MDYtOS45ODctNi43Mi41Ny0xMC4wOS43NDItMTYuODI4Ljg1OS0xLjMwMiA0LjE2Ni0xLjk4MSA2LjI0NS0zLjM5NiAxMC4zOTItMi44MDguMDExLTQuMjExLS4wMDMtNy4wMTgtLjA2OCA1LjE0Ny0xNC4zOTUgOS42NTctMjguNzk3IDEzLjYyNC00My41NjIgMy4zNzMtLjExNyA1LjA2LS4yMDkgOC40MjgtLjQ1NyA1LjU5NSAxNC4yNDkgMTEuNjk1IDI4LjA2OCAxOC40MzkgNDEuODFtLTE1Ljg0LTE1LjA2NWMtMy4wNzYtNy41NTEtNC41MTYtMTEuMzUyLTcuMTk5LTE4Ljk4OC0xLjg5OCA3Ljg2OC0yLjk0NiAxMS43OTUtNS4yNCAxOS42MTggNC45OC0uMTI1IDcuNDY5LS4yNTEgMTIuNDM5LS42M00yOTAuOTAwOTEgNDc3LjUyNjRjMi45NTgtMS4wNTcgNC40MjQtMS42MDggNy4zMzEtMi43NTMgMS42MTUgNC4xMDQgNS41NTkgNS42NjkgMTEuNzEgNC4zNzFhMTAuNzc0NTggMTAuNzc0NTggMCAwMDYuMDc4LTMuMDY0IDQuODY1MSA0Ljg2NTEgMCAwMDEuMjUtNC41MzUgNS44Mzk1NyA1LjgzOTU3IDAgMDAtMS43ODEtMi45NmMtLjg5Ny0uODItMi40ODItMS4yNDgtNC43NTMtMS4zMjYtMy4zODgtLjEyNi01LjA3My0uMjItOC40MjItLjQ2N2ExNy45NDU1OSAxNy45NDU1OSAwIDAxLTYuNDY2LTEuNDMgOS40NTAzMiA5LjQ1MDMyIDAgMDEtMy43MDMtMy40NjggMTMuMDk0NDIgMTMuMDk0NDIgMCAwMS0xLjk0My01LjI4NiAxMi4zNDg5IDEyLjM0ODkgMCAwMTIuNDU3LTkuODQyIDE0LjczNTA5IDE0LjczNTA5IDAgMDE4Ljk2Ny01LjI0OSAxNy40OTQ0NiAxNy40OTQ0NiAwIDAxOS4xNTYuNDA2IDExLjM5ODA2IDExLjM5ODA2IDAgMDE2LjY3OSA1LjQyMmMtMi40MzggMS40NC0zLjY3MiAyLjE0NC02LjE2OSAzLjUxNC0xLjgwOS0yLjk0OC00LjUyNC0zLjk3NS04LjIzMy0zLjE5N2E3LjY3NTU4IDcuNjc1NTggMCAwMC00LjY1OCAyLjQ4NCA0Ljk4NyA0Ljk4NyAwIDAwLTEuMDM1IDQuMTRjLjQzNyAyLjQ0OCAyLjU5NiAzLjg1NiA2LjUyNyA0LjA3NSAyLjg4Mi4xNjcgNC4zMzEuMjI4IDcuMjQyLjMwMyA0LjQxMy4xMiA3LjYzMi45NjQgOS42NSAyLjY5MWExMi45MTQ3NiAxMi45MTQ3NiAwIDAxNC4xNDUgNi40MDQgMTEuNTQyIDExLjU0MiAwIDAxLTIuMTEgMTEuMDM1Yy0yLjYyNyAzLjIyOC02LjY0NSA1LjQ5LTExLjkzOCA2LjU5OWEyMi44Mjg2OCAyMi44Mjg2OCAwIDAxLTEyLjE4Ny0uNDkgMTIuNzU3MDcgMTIuNzU3MDcgMCAwMS03Ljc5NC03LjM3N00zNTAuNTc4NjEgNDczLjAxMzJjLTMuMzQ3IDEuMjgzLTUuMDI5IDEuODk1LTguNDA4IDMuMDU4cS01Ljk4NjQ5LTE3LjM4OC0xMS45NzQtMzQuNzc1Yy0zLjk5MiAxLjM3NC02LjAwMSAyLjAxMy0xMC4wMzkgMy4xOTUtLjc1NS0yLjU4Mi0xLjEzMy0zLjg3My0xLjg4OS02LjQ1NGExODEuMTIgMTgxLjEyIDAgMDAyNi4yNjUtOS41NTdsMi43IDYuMTU4Yy0zLjg5NiAxLjcwOS01Ljg2IDIuNTE1LTkuODEzIDQuMDNxNi41NzkgMTcuMTczNSAxMy4xNTggMzQuMzQ1TTM5My41NzE4MSA0NTEuODIwM2EyMzguNjMxMSAyMzguNjMxMSAwIDAxLTI2LjkwMiAxNC4zOTlsLTE4LjI0Ni0zOS40OTJhMTgxLjYwMDA2IDE4MS42MDAwNiAwIDAwMjIuMTk2LTExLjg2M2MxLjM0OSAyLjIwOCAyLjAyNCAzLjMxMiAzLjM3NCA1LjUyYTE4Ni45MDYyNiAxODYuOTA2MjYgMCAwMS0xNi4zNDcgOS4wNzljMi4xMTYgNC4yMTUgMy4xNzQgNi4zMjMgNS4yODkgMTAuNTM5IDUuNjI3LTIuODI1IDguNDA2LTQuMzM3IDEzLjg4LTcuNTYgMS4yOCAyLjE3NSAxLjkyIDMuMjYyIDMuMjAxIDUuNDM3LTUuNjIgMy4zMS04LjQ3NCA0Ljg2Mi0xNC4yNTEgNy43NjMgMi4xODQgNC4zNTIgMy4yNzYgNi41MjggNS40NTkgMTAuODgxYTIxMi42MzEgMjEyLjYzMSAwIDAwMTguODE2LTEwLjQ2NWMxLjQxMiAyLjMwNSAyLjExOCAzLjQ1NyAzLjUzMSA1Ljc2MiIgY2xhc3M9ImNvbG9yNWYzZDE2IHN2Z1NoYXBlIi8+PC9nPjxnIGNsaXAtcGF0aD0idXJsKCNiKSIgZmlsbD0iIzAwMDAwMCIgY2xhc3M9ImNvbG9yMDAwIHN2Z1NoYXBlIj48cGF0aCBmaWxsPSIjZmZjNzRhIiBkPSJNMjU1LjE1MDQxLDExNi45NzkxOWw2LjA2OSwyMS4yNDEtOS4xMDQtNC41NTItMTYuNjg5LTMuMDM0LDQuNTUyLTQ3LjAzNCwyLjI3Ni0yMC40ODJzMTcuMDM4LTcuMDU1LDEzLjAzMyw1NC40NjgiIGNsYXNzPSJjb2xvcmZmYzc0YSBzdmdTaGFwZSIvPjxwYXRoIGZpbGw9IiNmZmM3NGEiIGQ9Ik0yNTYuNzE3MjksMTE3LjU4NjIxYy00LjAwNi02MS41MjMsMTMuMDMzLTU0LjQ2OCwxMy4wMzMtNTQuNDY4bDMuNjA3LDI4LjA2OSwxLjUxNyw1MC4wNjdoLTIyLjc1OWw0LjYwMi0yMy42NjgiIGNsYXNzPSJjb2xvcmZmYzc0YSBzdmdTaGFwZSIvPjxwYXRoIGZpbGw9IiNmYWM4NDciIGQ9Ik0yNjMuMDg1MzksMTIwLjM5MzFjLTUuNTgzLTMuMTcxLTYuOTk1LDExLTYuOTk1LDExcy0uMDMsMS44MDUtLjA5LDUuMDY3Yy0uNDcxLDI3LjcyLTIuNTgsMTYwLjExMSwwLDE3NS4wMS4wMy4xNjcuMDYuMzM0LjA5LjQ3MSwzLjAzNSwxMy42NTUsMTcuODgxLDQ2LjU1MSw2MS44OCw3MC44MjZzMTM1LjM1OCw3My4zMDksMTM1LjM1OCw3My4zMDljNDIuNDgyLTEyLjEzOCwzNS42NTQtNjUuOTk5LDM1LjY1NC02NS45OTlzLTE2NS4zNzYtNTEuNTg1LTE3NC40NzktMTAxLjY1My03LjU4Ni03Ny4zNzgtNy41ODYtNzcuMzc4LDAtMTAuNjItNC41NTItMTkuNzI0Yy00LjU1MS05LjEwMy0xNS4xNzItMzAuMzQ0LTE4LjIwNi01NC42MTlhMjQ5LjIzNTQsMjQ5LjIzNTQsMCwwLDAtOS4wNTgtNDIuMzYxYy0uODE5LDMuMzIzLTIuMjQ1LDUuNTUzLTMuODM4LDUuMTg5LTIuMDAzLS40Ny0zLjQ2LTYuMDg0LTQuNTUyLTExLjM3OWExMi45MjMxMywxMi45MjMxMywwLDAsMS0uMjEyLTMuOTI5Yy0xLjM4MS0uNzI5LTkuMDI4LTIuNTA0LTEwLjQwOSw0Ny4xN2gtLjE4MWMtMS4zODEtNDkuNjc0LTkuMDI4LTQ3Ljg5OS0xMC40MDgtNDcuMTdhMTMuNDI4MzEsMTMuNDI4MzEsMCwwLDEtLjIxMywzLjkyOWMtMS4wNzcsNS4yOTUtMi41NDksMTAuOTA5LTQuNTUyLDExLjM3OS0xLjU3Ny4zNjQtMy4wMTktMS44NjYtMy44MzgtNS4xODlhMjQ5LjIzNzY5LDI0OS4yMzc2OSwwLDAsMC05LjA1OCw0Mi4zNjFjLTMuMDM0LDI0LjI3NS0xMy42NTUsNDUuNTE2LTE4LjIwNiw1NC42MTktNC41NTIsOS4xMDQtNC41NTIsMTkuNzI0LTQuNTUyLDE5LjcyNHMxLjUxNywyNy4zMS03LjU4Niw3Ny4zNzgtMTc0LjQ3OSwxMDEuNjUzLTE3NC40NzksMTAxLjY1My02LjgyOCw1My44NjEsMzUuNjU0LDY1Ljk5OWMwLDAsODkuMDIzLTQ3Ljc5NiwxMzMuMDIyLTcyLjA3MXM2MS4xODEtNTguNDA5LDY0LjIxNi03Mi4wNjRjLjAzLS4xMzcuMDYtLjMwNC4wOTEtLjQ3MSwyLjU3OS0xNC44OTkuNDctMTQ3LjI5LDAtMTc1LjAxLS4wNjEtMy4yNjItLjA5MS01LjA2Ny0uMDkxLTUuMDY3cy0xLjQxMS0xNC4xNzEtNi45OTUtMTEiIGNsYXNzPSJjb2xvcmZhYzg0NyBzdmdTaGFwZSIvPjxwYXRoIGQ9Ik0yMjAuMjU0MzkgMjAxLjk0MzEyYTQ5LjM4ODA4IDQ5LjM4ODA4IDAgMDEtLjEtNy4xMDQgNTIuNDM4MTcgNTIuNDM4MTcgMCAwMS44NjgtNy4wNjcgNDMuNjI5MjIgNDMuNjI5MjIgMCAwMTEuOTE4LTYuODcxIDM4LjYxODIxIDM4LjYxODIxIDAgMDEzLjA4Ny02LjQ1MmwtLjA0Ni4xMTYgMS44NC05LjM5NGMuMTYyLS43ODEuMjkyLTEuNTcuNDc5LTIuMzQ0bC41NzQtMi4zMjQgMS4xNDctNC42NDZxMi4yNzg1LTkuMjkxIDQuNjg4LTE4LjU1MWMuNzg5LTMuMDc2IDEuNDE2LTYuMTk1IDEuOTE1LTkuMzMxYTYwLjc3MjkxIDYwLjc3MjkxIDAgMDAuODEyLTkuNDc0Yy4wMzEtMy4xODkuMDUtNi4zOC4yMjMtOS41NjkuMDg0LTEuNTk1LjE5NS0zLjE4OS4zOTgtNC43NzRhMTUuMzM1ODEgMTUuMzM1ODEgMCAwMTEuMTYyLTQuNjI3IDE1LjI3OTIyIDE1LjI3OTIyIDAgMDAtMS4wMSA0LjY0NGMtLjE1MSAxLjU4NC0uMjExIDMuMTc2LS4yNDQgNC43NjgtLjA1MiAzLjE4My0uMDE5IDYuMzcuMDA0IDkuNTU4YTc1LjI3OTEgNzUuMjc5MSAwIDAxLTIuNTA4IDE4Ljk5NGwtNC42MzQgMTguNTU0LTEuMTczIDQuNjM0LS41ODYgMi4zMTZjLS4xOTEuNzc0LS4zMjYgMS41NTktLjQ5MiAyLjMzOGwtMS45MTEgOS4zNjVhLjM2ODQyLjM2ODQyIDAgMDEtLjA0Mi4xMDlsLS4wMDQuMDA3YTM3LjkzMjIyIDM3LjkzMjIyIDAgMDAtMy4xNDYgNi4yODYgNDMuMTU4NjQgNDMuMTU4NjQgMCAwMC0yLjAxOCA2Ljc1OCA1NS4wMjAyNCA1NS4wMjAyNCAwIDAwLTEuMDc1IDYuOTkzIDQ5LjMxNDQ4IDQ5LjMxNDQ4IDAgMDAtLjEyNiA3LjA4OE0yNDMuNzcxIDEzNC40MjcxOWwtMS4yODMgMTMuNjgxLS4wMDIuMDE0LS4wMDQuMDE3Yy0uNjQ2IDMuMTM5LTEuMDQ1IDYuMzU5LTEuNDI3IDkuNTYtLjM2MSAzLjIwOC0uNzEgNi40MTktLjk5OCA5LjYzNy0uMjk5IDMuMjEyLS41MTMgNi40NDMtLjkxIDkuNjY5LS4zNiAzLjIyNS0uOTM4IDYuNDItMS41NjEgOS42YTE0OS45NDg3IDE0OS45NDg3IDAgMDEtNS4wMDMgMTguNzc3IDEwNy4xNzA1OSAxMDcuMTcwNTkgMCAwMC01LjUwMSAxOC41NiA4OC4yNTQgODguMjU0IDAgMDExLjk4NS05LjUwMWMuNDA5LTEuNTY3Ljg3OC0zLjExOSAxLjM4OC00LjY1OC41MDItMS41NTIgMS4xMDMtMy4wNDQgMS41NjctNC41ODZhMTc0LjA4MzQxIDE3NC4wODM0MSAwIDAwNC43NjYtMTguNzQ5Yy42MDYtMy4xNjcgMS4xMjctNi4zNSAxLjUyNi05LjU0Ny40MTUtMy4xOS42NTEtNi40MTQuOTczLTkuNjM4YTE3My4zMTY2MSAxNzMuMzE2NjEgMCAwMTIuNzM4LTE5LjIzOGwtLjAwNS4wMzF6TTIxOS40OTYwOSAyMzcuNTk3NDFhMTEuMjc1ODIgMTEuMjc1ODIgMCAwMDEuNjYgMy41MDcgNy40Njk1NiA3LjQ2OTU2IDAgMDAxLjI4NSAxLjM4MyAxNy41NDcgMTcuNTQ3IDAgMDAxLjYwNiAxLjE3OSA0LjcxMTE3IDQuNzExMTcgMCAwMS0xLjk5MS0uNjMgNS4wMDE1NCA1LjAwMTU0IDAgMDEtMS41OTMtMS40MjQgNS40ODY4OSA1LjQ4Njg5IDAgMDEtLjkwMi0xLjkyOSA0LjYyOCA0LjYyOCAwIDAxLS4wNjUtMi4wODZNMjA1LjA2NTkgMjIyLjg1ODE4Yy44MjggMi40MjUgMS40NDEgNC44ODUgMi4wNCA3LjM0OGwuODUzIDMuNzAxYy4yOTggMS4yMy41MzYgMi40Ny45MTcgMy42OWExNi4xODM4NCAxNi4xODM4NCAwIDAxLTEuNTYzLTMuNTA5Yy0uNDA4LTEuMjEyLS43MzctMi40NDUtMS4wNDMtMy42ODJhNDYuNzc2NzIgNDYuNzc2NzIgMCAwMS0xLjIwNC03LjU0OE0yNDUuMjg4NiA4OC4xNTIzMWMtMS4wODIgNS4yOTItMi41NDMgMTAuOTE2LTQuNTUyIDExLjM3OS0yLjQ0OS41NjUtNC41NTItNS4wOTUtNC41NTItMTEuMzc5IDAtNi4yODUgMi4wMzktMTEuMzc5IDQuNTUyLTExLjM3OSAyLjUxNCAwIDUuODEgNS4yMjIgNC41NTIgMTEuMzc5IiBmaWxsPSIjMDAwMDAwIiBjbGFzcz0iY29sb3IwMDAgc3ZnU2hhcGUiLz48cGF0aCBkPSJNMjQzLjc3MTUgNjYuOTExNDFjMCA1LjQ0Ny0xLjM1OSA5Ljg2Mi0zLjAzNSA5Ljg2Mi0xLjY3NSAwLTMuMDM0LTQuNDE1LTMuMDM0LTkuODYyczEuMzU5LTkuODYyIDMuMDM0LTkuODYyYzEuNjc2IDAgMy4wMzUgNC40MTUgMy4wMzUgOS44NjJNMjQ5LjA4MTUgMTIzLjQyNzQ5YzAgNi4wNzUtMS44NjggMTEtNC4xNzIgMTEtMi4zMDUgMC0yLjY1Ni00LjkyNS0yLjY1Ni0xMXMuMzUxLTkuNDgzIDIuNjU2LTkuNDgzYzIuMzA0IDAgNC4xNzIgMy40MDggNC4xNzIgOS40ODNNMjkxLjc0OTUxIDIwMS45NDMxMmE0OS4zMTg4MiA0OS4zMTg4MiAwIDAwLS4xMjYtNy4wODggNTUuMDE2NzEgNTUuMDE2NzEgMCAwMC0xLjA3NS02Ljk5MyA0My4xNTQzMiA0My4xNTQzMiAwIDAwLTIuMDE4LTYuNzU4IDM3LjkzMTQ5IDM3LjkzMTQ5IDAgMDAtMy4xNDYtNi4yODZsLS4wMDMtLjAwNWEuMzY5OTMuMzY5OTMgMCAwMS0uMDQzLS4xMTFsLTEuOTExLTkuMzY1Yy0uMTY2LS43NzktLjMwMS0xLjU2NC0uNDkyLTIuMzM4bC0uNTg2LTIuMzE2LTEuMTczLTQuNjM0LTQuNjM0LTE4LjU1NGE3NS4yNzkxMiA3NS4yNzkxMiAwIDAxLTIuNTA4LTE4Ljk5NGMuMDIzLTMuMTg4LjA1Ni02LjM3NS4wMDQtOS41NTgtLjAzNC0xLjU5Mi0uMDkzLTMuMTg0LS4yNDQtNC43NjhhMTUuMjc4NjMgMTUuMjc4NjMgMCAwMC0xLjAxLTQuNjQ0IDE1LjMzNTg0IDE1LjMzNTg0IDAgMDExLjE2MiA0LjYyN2MuMjAzIDEuNTg1LjMxNCAzLjE3OS4zOTggNC43NzQuMTczIDMuMTg5LjE5MiA2LjM4LjIyMyA5LjU2OWE2MC43NzE2OCA2MC43NzE2OCAwIDAwLjgxMiA5LjQ3NGMuNDk5IDMuMTM2IDEuMTI2IDYuMjU1IDEuOTE1IDkuMzMxcTIuMzkyNTIgOS4yNDYgNC42ODggMTguNTUxbDEuMTQ3IDQuNjQ2LjU3NCAyLjMyNGMuMTg3Ljc3NC4zMTcgMS41NjMuNDc5IDIuMzQ0bDEuODQgOS4zOTQtLjA0Ni0uMTE2YTM4LjYxOSAzOC42MTkgMCAwMTMuMDg3IDYuNDUyIDQzLjYzMTM3IDQzLjYzMTM3IDAgMDExLjkxOCA2Ljg3MSA1Mi40MzY1NCA1Mi40MzY1NCAwIDAxLjg2OCA3LjA2NyA0OS4zODgwOCA0OS4zODgwOCAwIDAxLS4xIDcuMTA0TTI2OC4yMzIzOSAxMzQuNDI3MTlsMS43NTEgMTMuNjI5LS4wMDUtLjAzMWExNzMuNTUzMTYgMTczLjU1MzE2IDAgMDEyLjczOSAxOS4yMzhjLjMyMiAzLjIyNC41NTcgNi40NDguOTczIDkuNjM4LjM5OSAzLjE5Ny45MTkgNi4zOCAxLjUyNiA5LjU0N2ExNzQuMzA5NDggMTc0LjMwOTQ4IDAgMDA0Ljc2NSAxOC43NDljLjQ2NCAxLjU0MiAxLjA2NiAzLjAzNCAxLjU2NyA0LjU4Ni41MTEgMS41MzkuOTc5IDMuMDkxIDEuMzg5IDQuNjU4YTg4LjUwMjc4IDg4LjUwMjc4IDAgMDExLjk4NCA5LjUwMSAxMDcuMDg0ODIgMTA3LjA4NDgyIDAgMDAtNS41MDEtMTguNTYgMTQ5Ljk0NjU2IDE0OS45NDY1NiAwIDAxLTUuMDAyLTE4Ljc3N2MtLjYyNC0zLjE4LTEuMjAxLTYuMzc1LTEuNTYxLTkuNi0uMzk4LTMuMjI2LS42MTEtNi40NTctLjkxLTkuNjY5LS4yODgtMy4yMTgtLjYzOC02LjQyOS0uOTk5LTkuNjM3LS4zODEtMy4yMDEtLjc4MS02LjQyMS0xLjQyNy05LjU2bC0uMDAzLS4wMTctLjAwMy0uMDE0ek0yOTIuNTA3ODEgMjM3LjU5NzQxYTQuNjI4MzkgNC42MjgzOSAwIDAxLS4wNjUgMi4wODYgNS40ODcyNCA1LjQ4NzI0IDAgMDEtLjkwMiAxLjkyOSA1LjAwMTYxIDUuMDAxNjEgMCAwMS0xLjU5MyAxLjQyNCA0LjcxMTE3IDQuNzExMTcgMCAwMS0xLjk5MS42MyAxNy41NDczNiAxNy41NDczNiAwIDAwMS42MDYtMS4xNzkgNy40NzAxOSA3LjQ3MDE5IDAgMDAxLjI4NS0xLjM4MyAxMS4yNzY1MSAxMS4yNzY1MSAwIDAwMS42Ni0zLjUwN00zMDYuOTM4IDIyMi44NTgxOGE0Ni43OCA0Ni43OCAwIDAxLTEuMjA0IDcuNTQ4Yy0uMzA2IDEuMjM3LS42MzUgMi40Ny0xLjA0MyAzLjY4MmExNi4xODM5MSAxNi4xODM5MSAwIDAxLTEuNTYzIDMuNTA5Yy4zODEtMS4yMi42MTktMi40Ni45MTctMy42OWwuODUzLTMuNzAxYy41OTktMi40NjMgMS4yMTItNC45MjMgMi4wNC03LjM0OE0yNjYuNzE1MyA4OC4xNTIzMWMxLjA4MiA1LjI5MiAyLjU0MyAxMC45MTYgNC41NTIgMTEuMzc5IDIuNDQ5LjU2NSA0LjU1Mi01LjA5NSA0LjU1Mi0xMS4zNzkgMC02LjI4NS0yLjAzOS0xMS4zNzktNC41NTItMTEuMzc5LTIuNTE0IDAtNS44MSA1LjIyMi00LjU1MiAxMS4zNzkiIGZpbGw9IiMwMDAwMDAiIGNsYXNzPSJjb2xvcjAwMCBzdmdTaGFwZSIvPjxwYXRoIGQ9Ik0yNjguMjMyOTEgNjYuOTExNDFjMCA1LjQ0NyAxLjM1OCA5Ljg2MiAzLjAzNCA5Ljg2MnMzLjAzNS00LjQxNSAzLjAzNS05Ljg2Mi0xLjM1OS05Ljg2Mi0zLjAzNS05Ljg2Mi0zLjAzNCA0LjQxNS0zLjAzNCA5Ljg2Mk0yNjIuOTIyMzkgMTIzLjQyNzQ5YzAgNi4wNzUgMS44NjggMTEgNC4xNzIgMTEgMi4zMDUgMCAyLjY1Ni00LjkyNSAyLjY1Ni0xMXMtLjM1MS05LjQ4My0yLjY1Ni05LjQ4M2MtMi4zMDQgMC00LjE3MiAzLjQwOC00LjE3MiA5LjQ4M00yNTYgMTE5Ljk1MzA5Yy4xOSA4IC4yNyAxNS45OTkuNDA4IDIzLjk5OWwuMjI3IDIzLjk5OGMuMTM1IDE1Ljk5OS4xMTQgMzEuOTk4LjE3OCA0Ny45OTctLjA3NSAxNS45OTktLjA3NSAzMS45OTgtLjIyIDQ3Ljk5N2wtLjI1MSAyMy45OThjLS4xNDcgOC0uMjM1IDE1Ljk5OS0uNDMzIDIzLjk5OS0uMTkxLTgtLjI3MS0xNS45OTktLjQxLTIzLjk5OWwtLjIyOC0yMy45OTljLS4xMy0xNS45OTktLjExNi0zMS45OTgtLjE3NS00Ny45OTcuMDc5LTE1Ljk5OS4wNzQtMzEuOTk3LjIyMy00Ny45OTZsLjI1LTIzLjk5OWMuMTQ2LTcuOTk5LjIzMy0xNS45OTguNDMxLTIzLjk5OCIgZmlsbD0iIzAwMDAwMCIgY2xhc3M9ImNvbG9yMDAwIHN2Z1NoYXBlIi8+PC9nPjxnIGNsaXAtcGF0aD0idXJsKCNhKSIgZmlsbD0iIzAwMDAwMCIgY2xhc3M9ImNvbG9yMDAwIHN2Z1NoYXBlIj48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyMjUuNzExIiByPSIyMDQuMDAxIiBmaWxsPSJub25lIiBzdHJva2U9IiNmYWM4NDciIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIxMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDI1NiAyMjUuNzExKSIgY2xhc3M9ImNvbG9yU3Ryb2tlZmFjODQ3IHN2Z1N0cm9rZSIvPjwvZz48L2c+PC9zdmc+"
+      alt="Free Namaste  Illustration" />
+    <h2>Welcome to Sign Sense</h2>
+    <div class="loading-container">
+      <div class="name">Intializing</div>
+      <div class="dots-container">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+  <!-- splash screen ends -->
+
+  <!-- header start -->
+  <div class="main-content" style="display: none">
+    <header>
+      <nav>
+        <div class="logo">
+          <img onclick="goToHome()" src="/images/favicon.png" alt="" />
+          <h1 onclick="goToHome()">Sign Sense</h1>
+          
+            <h3>Welcome!</h3>
+            <div class="welcome-container">
+            <h3><%= name %></h3>
+            
+          </div>
+          <a  href="/logout" ><input style="border: #ccc; border-radius: 20px;"  type="button" value="Logout" class="logout-btn btn-primary-soft btn"></a>
+
+        </div>
+        <div class="nav-links">
+          <a class="hideOnMobile" href="/tutorial">Tutorials</a>
+          <a class="hideOnMobile" href="/practise">Practice</a>
+          <a class="hideOnMobile" href="/signify-chat">Signify</a>
+          <a class="hideOnMobile" href="/about">About</a>
+          <a class="hideOnMobile" href="/contact">Contact</a>
+          <i id="menu-btn" class="ri-menu-line" onclick="showSidebar()"></i>
+        </div>
+      </nav>
+      <div class="sidebar">
+        <i id="menu-close-btn" class="ri-close-line" onclick="hideSidebar()"></i>
+        <a href="login">Login</a>
+        <a href="tutorial">Tutorials</a>
+        <a href="practise">Practice</a>
+        <a href="signify-chat">Signify</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+    </header>
+
+    <!-- header end -->
+
+    <!-- main content starts -->
+    <main>
+      <!-- promote content stats-->
+      <div class="promote-content">
+        <div class="promote-content1">
+          <h2>
+            Introducing <span>Sign Sense</span>: The Future of Interpreters <span id="blinkIt">!</span>
+          </h2>
+          <p>
+            Sign Sense is revolutionizing the future of interpreters. A
+            technologically advanced solution designed to bridge the
+            communication gap for the deaf and hard of hearing community, it
+            leverages cutting-edge AI and machine learning. By transforming
+            sign language into real-time spoken language.
+          </p>
+
+          <button id="redirect-btn1"><a id="login-btn" href="/logout">LOGOUT</a></button>
+          <button id="redirect-btn2"><a id="explore-btn" href="#feature-container">Explore Now</a></button>
+        </div>
+        <div class="promote-content2">
+          <img src="/images/sign-illustation.jpg" alt="" />
+        </div>
+      </div>
+      <!-- promote content ends -->
+      <div class="people-counter" id="people-counter">
+        <div class="people-counter1">
+          <h3 id="counter1">0</h3>
+          <p>People suffers from disabling hearing loss across the globe</p>
+        </div>
+        <div class="people-counter2">
+          <h3 id="counter2">0</h3>
+          <p>Different sign languages that are currently undocumented</p>
+        </div>
+        <div class="people-counter3">
+          <h3 id="counter3">0</h3>
+          <p>People worldwide use sign language as their first language</p>
+        </div>
+      </div>
+
+      <!-- features -->
+      <!-- feature1 -->
+      <div class="feature-container2" id="feature-container">
+        <div class="feature-content2">
+          <h2>Unlock the Power of Sign Language: Your Gateway to Communication</h2>
+          <p>
+            Welcome to our innovative platform, designed to bridge the gap between the deaf and dumb community and the rest of the world. Here, you'll find a robust machine learning model that interprets sign language from scratch, allowing you to practice and improve your skills with ease. Our platform is not just about learning; it's about breaking barriers and fostering a more inclusive society.
+          </p>
+        </div>
+        <div class="feature-content2-img">
+          <img id="image3" src="/images/feature-learn.svg" alt="">
+        </div>
+      </div>
+
+      <!-- feature2 -->
+      <div class="feature-container1">
+        <div class="feature-content1-img">
+          <img id="image1" src="/images/feature-remote-meeting.gif" alt="">
+        </div>
+        <div class="feature-content1">
+          <h2>Bring people together to make a difference.</h2>
+          <p>
+
+            Welcome to our platform, where every connection counts. Our video calling feature breaks barriers, bringing
+            people together regardless of distance or ability. With seamless sign language interpretation, we empower
+            the deaf and dumb community to communicate effortlessly and make meaningful connections. Join us in
+            revolutionizing communication and making a difference.
+
+          </p>
+        </div>
+      </div>
+    </main>
+    <!--  main content ends -->
+
+    <!-- footer starts -->
+    <footer class="footer">
+      <p>
+        &copy; SignSense | Made with ❤️ by Team Sign Sense
+      </p>
+      <a href="#" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+      <a href="#" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
+      <a href="#" target="_blank"><i class="ri-instagram-fill"></i></a>
+    </footer>
+    <!-- footer ends -->
+  </div>
+</body>
+
+</html>
+
+

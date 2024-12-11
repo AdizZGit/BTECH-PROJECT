@@ -1,0 +1,149 @@
+.container_img{
+    height: 505px;
+    
+    }
+    
+    .container_img img{
+        height: 500px;
+        width: 1150px;
+        margin-left: 30px;
+    }
+    
+    .team-dropdowns,.venue-dropdowns,.run_scored{
+        display: flex;
+        justify-content: space-between;
+        font-size: large;
+        font-weight: 650;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .dropdown_batting,
+    .dropdown_bowling,
+    .dropdown_Venue,.run_scored{
+    flex: 1;
+    margin-right: 120px;
+    margin-left: 30px;
+    margin-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    
+    }
+    .dropdown_batting select,.dropdown_Venue select,.run_scored
+    {
+        width: 500px; /* Adjust the width as needed */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    }
+    .dropdown_Venue select
+    {
+        width: 1150px;   /* Adjust the width as needed */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    }
+    
+    .dropdown_bowling select{
+        width: 500px; /* Adjust the width as needed */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-right: 100px;
+    
+    }
+    
+    .dropdown_batting form,
+    .dropdown_bowling form{
+        display: flex;
+        flex-direction: column;
+        /* color: #fff; */
+    }
+    
+    .dropdown_Venue,
+    .run_scored,.run_scored {
+        margin-top: 20px;
+    }
+    
+    form {
+        display: inline-block;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .input-row {
+        display: flex;
+        justify-content: space-around; /* Evenly space the input groups across the row */
+        align-items: center; /* Align items vertically in the center */
+        margin-top: 20px; /* Add some top margin for spacing from elements above */
+        font-size: large;
+        margin-left: 15px;
+        font-weight: 650;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    }
+    /* .input-row label{
+        margin-left: -15px;
+    
+        
+    } */
+    
+    .input-group {
+        display: flex;
+        flex-direction: column; /* Stack label and input vertically */
+        align-items:flex-start; /* Center-align the items horizontally */
+        margin-left: 15px;
+        width: 60%;
+    }
+    
+    .input-group label {
+        margin-bottom: 10px; /* Add some space between the label and the input */
+    }
+    
+    /* Optional: Adjust the width of input fields if necessary */
+    .input-group input {
+        width: 100%; /* You might want to set a specific width or leave it to adjust based on parent container */
+        margin-left: 0px;
+        max-width: 220px; /* Maximum width for the inputs to prevent them from becoming too wide */
+    }
+    .run_scored input{
+        width: 100%; /* You might want to set a specific width or leave it to adjust based on parent container */
+        align-items: center;
+        max-width: 220px;
+    }
+    .btn input{
+        margin-left: 470px;
+        width: 100%;
+        max-width: 235px;
+    }
+    
+    select,
+    input[type="number"],
+    input[type="submit"] {
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border:3px solid black;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    /* Show increment and decrement arrows for number inputs */
+    input.always-visible{
+        -moz-appearance: textfield; /* Firefox */
+        appearance: textfield; /* Others */
+        width: calc(100% - 20px); /* Ensure the input takes full width */
+        padding-right: 10px; /* Provide space for arrows */
+        box-sizing: border-box; /* Include padding in width */
+    }
+    
+    /* Style for increment and decrement buttons */
+    input.always-visible::-webkit-inner-spin-button,
+    input.always-visible::-webkit-outer-spin-button {
+        opacity: 1; /* Ensure the arrows are always visible */
+    }
+    
+    

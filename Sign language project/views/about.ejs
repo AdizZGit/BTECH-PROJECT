@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Sense - Developers</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/about.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script>
+    function goToHome() {
+      window.location.href = "/data";
+    }
+    
+    function displayImage(text) {
+    // Convert the text to lowercase, replace spaces with hyphens, and remove any leading numbers
+    var imageName = text.toLowerCase().replace(/\s+/g, '-');
+    // Construct the image path
+    var imagePath = "/images/sign-images/" + imageName + ".gif";
+    // Get the image element
+    var imageElement = document.getElementById("default-image");
+    // Set the source of the image element to the constructed path
+    imageElement.src = imagePath;
+  
+    imageElement.onerror = function () {
+      // If the image does not exist, display the "not found" image
+      this.src = "/images/tutorial-not-found.png";
+      // document.getElementById("search-box").value = '';
+      // alert("No tutorial for this: " + text);
+    };
+  }
+  
+  
+  function getTheImg() {
+    // Get the value from the search box
+    var searchText = document.getElementById("search-box").value;
+    // Call displayImage with the search text
+    displayImage(searchText);
+  }
+  
+  // Event listener for the search button click
+  document.getElementById("search-btn").addEventListener("click", getTheImg);
+  
+  // Event listener for the Enter key press in the search box
+  document.getElementById("search-box").addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+      getTheImg();
+    }
+  });
+  
+   </script>
+</head>
+
+<body>
+  <!-- header start -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img onclick="goToHome()" src="/images/favicon.png" alt="" />
+        <h1 onclick="goToHome()">Sign Sense</h1>
+        <h3>Welcome!</h3>
+            <div class="welcome-container">
+            <h3><%= name %></h3>
+            
+          </div>
+          <a href="/logout" ><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
+      </div>
+      <div class="nav-links">
+        <a class="hideOnMobile" href="/tutorial">Tutorials</a>
+        <a class="hideOnMobile" href="/practise">Practice</a>
+        <a class="hideOnMobile" href="/signify-chat">Signify</a>
+        <a class="hideOnMobile" href="/about">About</a>
+        <a class="hideOnMobile" href="/contact">Contact</a>
+        <i id="menu-btn" class="ri-menu-line" onclick="showSidebar()"></i>
+      </div>
+    </nav>
+    <div class="sidebar">
+      <i id="menu-close-btn" class="ri-close-line" onclick="hideSidebar()"></i>
+      <a href="/login">Login</a>
+      <a href="/tutorial">Tutorials</a>
+      <a href="/practise">Practice</a>
+      <a href="/signify-chat">Signify</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </header>
+  <!-- HEADER ENDS -->
+
+  <!-- about starts -->
+  <h3 id="about-title">Developer Community👨‍💻</h3>
+  <!-- developer Aditya -->
+  <div class="about-content">
+    <div class="about-container1">
+      <div class="about-developer1" data-aos="">
+        <h2>
+          Nice to meet you,
+          <br>
+          I'm Aditya Rangari
+        </h2>
+        <p id="developer-intro1">
+          Aditya Rangari is a dedicated back-end developer with a strong foundation in server-side technologies. His
+          role in Team Sign Sense involves designing and implementing robust and scalable back-end systems that
+          support
+          the application's core functionalities.
+        </p>
+
+        <p id="developer-role1">
+          Project Role: Back-end Development
+          <br>
+          Team Sign Sense
+        </p>
+        <div class="about-social-media">
+          <a href="https://www.facebook.com/aditya.rangari.710" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+          <a href="https://www.instagram.com/aditya_rangari__" target="_blank"><i class="ri-instagram-fill"></i></a>
+          <a href="" target="_blank"><i class="ri-github-fill"></i></a>
+          <a href="" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
+        </div>
+      </div>
+      <div class="about-developer-img1" data-aos="">
+        <img src="/images/aditya.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- developer kunal-->
+  <div class="about-content">
+    <div class="about-container2">
+      <div class="about-developer-img2" data-aos="">
+        <img src="/images/kunal.jpg" alt="" loading="lazy" />
+      </div>
+      <div class="about-developer2" data-aos="">
+        <h2>
+          Nice to meet you,
+          <br>
+          I'm Kunal Wahurwagh
+        </h2>
+        <p id="developer-intro2">
+          Kunal Wahurwagh excels as a front-end developer, focusing on creating intuitive and responsive user
+          interfaces. His role in Team Sign Sense is pivotal in ensuring that the application is not only visually
+          appealing but also highly functional and user-friendly. He focus on enhancing the overall user experience.
+        </p>
+
+        <p id="developer-role2">
+          Project Role: Front-end Development
+          <br>
+          Team Sign Sense
+        </p>
+        <div class="about-social-media">
+          <a href="https://www.facebook.com/kunal.wahurwagh" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+          <a href="https://www.instagram.com/kunal_wahurwagh/" target="_blank"><i class="ri-instagram-fill"></i></a>
+          <a href="https://github.com/iamkunal01" target="_blank"><i class="ri-github-fill"></i></a>
+          <a href="https://www.linkedin.com/in/kunal-wahurwagh-152718211/" target="_blank"><i
+              class="ri-linkedin-box-fill"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- developer Deva-->
+  <div class="about-content">
+    <div class="about-container1">
+      <div class="about-developer1" data-aos="">
+        <h2>
+          Nice to meet you,
+          <br>
+          I'm Devendra Bhide
+        </h2>
+        <p id="developer-intro1">
+          Devendra Bhide is a versatile Python developer with a passion for problem-solving and innovation. His role
+          in
+          Team Sign Sense involves leveraging Python's capabilities to develop efficient algorithms and data
+          processing
+          systems. Devendra's expertise in ML and AI contributes significantly to the project's advancement.
+        </p>
+        <p id="developer-role1">
+          Project Role: Python Developer
+          <br>
+          Team Sign Sense
+        </p>
+        <div class="about-social-media">
+          <a href="https://www.facebook.com/devendra.bhide.313" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+          <a href="https://www.instagram.com/deva.bhide.313/" target="_blank"><i class="ri-instagram-fill"></i></a>
+          <a href="" target="_blank"><i class="ri-github-fill"></i></a>
+          <a href="https://www.linkedin.com/in/devendra-bhide-b7854723b/" target="_blank"><i
+              class="ri-linkedin-box-fill"></i></a>
+        </div>
+      </div>
+      <div class="about-developer-img1" data-aos="">
+        <img src="/images/deva.jpg" alt="" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  <!-- developer Vaibhav -->
+  <div class="about-content">
+    <div class="about-container2">
+      <div class="about-developer-img2" data-aos="">
+        <img src="/images/vaibhav.jpg" alt="" loading="lazy" />
+      </div>
+      <div class="about-developer2" data-aos="">
+        <h2>
+          Nice to meet you,
+          <br>
+          I'm Vaibhav More
+        </h2>
+        <p id="developer-intro2">
+          Vaibhav More takes on the role of Project Manager in Team Sign Sense, ensuring the project's smooth
+          progression from conception to completion. His responsibilities include planning, coordinating, and
+          overseeing
+          the project's development process, and managing resources and addressing any challenges that arise.
+        </p>
+
+        <p id="developer-role2">
+          Project Role: Project Manager
+          <br>
+          Team Sign Sense
+        </p>
+        <div class="about-social-media">
+          <a href="https://www.facebook.com/profile.php?id=100055087541123" target="_blank"><i
+              class="ri-facebook-box-fill"></i></a>
+          <a href="https://www.instagram.com/morevaibhav_07/" target="_blank"><i class="ri-instagram-fill"></i></a>
+          <a href="" target="_blank"><i class="ri-github-fill"></i></a>
+          <a href="https://www.linkedin.com/in/vaibhav-more-332b86262/" target="_blank"><i
+              class="ri-linkedin-box-fill"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer starts -->
+  <footer class="footer">
+    <p>
+      &copy; SignSense | Made with ❤️ by Team Sign Sense
+    </p>
+    <a href="#" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-instagram-fill"></i></a>
+  </footer>
+  <!-- footer ends -->
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+
+</body>
+
+</html>
+<script>
+  // Function to check screen width and add appropriate animation attribute
+  function setAnimation() {
+    var screenWidth = window.innerWidth;
+    var aboutContainers = document.querySelectorAll('.about-content');
+
+    aboutContainers.forEach(function (container) {
+      var developer1 = container.querySelector('.about-developer1');
+      var developer2 = container.querySelector('.about-developer2');
+      var developerImg1 = container.querySelector('.about-developer-img1');
+      var developerImg2 = container.querySelector('.about-developer-img2');
+
+      if (screenWidth <= 800) {
+        if (developer1) developer1.setAttribute('data-aos', 'fade-up');
+        if (developer2) developer2.setAttribute('data-aos', 'fade-up');
+        if (developerImg1) developerImg1.setAttribute('data-aos', 'fade-up');
+        if (developerImg2) developerImg2.setAttribute('data-aos', 'fade-up');
+      } else {
+        if (developer1) developer1.setAttribute('data-aos', 'fade-right');
+        if (developer2) developer2.setAttribute('data-aos', 'fade-left');
+        if (developerImg1) developerImg1.setAttribute('data-aos', 'fade-left');
+        if (developerImg2) developerImg2.setAttribute('data-aos', 'fade-right');
+      }
+    });
+
+    // Reinitialize AOS
+    AOS.init({
+      duration: 1500,
+      offset: 250,
+      once: true
+    });
+  }
+
+  // Call the function initially
+  setAnimation();
+
+  // Call the function whenever the window is resized
+  window.addEventListener('resize', setAnimation);
+</script>

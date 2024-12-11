@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Sense - Login</title>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+   
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+	
+			$("#form").submit(function(event) {
+				event.preventDefault();
+	
+				$.ajax({
+					type: 'POST',
+					url: '/login',
+					data: $('#form').serialize(),
+					dataType: "json",
+					success: function(response){
+						$('#form')[0].reset();
+	
+						if (response.Success == "Success!") {
+							// Alert for successful login
+							alert("Login successful");
+							// Redirect to the data page
+							window.location.href = "/data";
+						} else {
+							// Alert for incorrect email or password
+							alert("Incorrect email or password. Please enter correct email and password.");
+						}
+					},
+					error: function() {
+						// Alert for any errors
+						alert("An error occurred. Please try again later.");
+					}
+				});
+			});
+	
+		});
+	
+		function validateUsers() {
+			// Your validation logic here
+	
+			// Redirect to the desired URL
+			window.location.href = "/admin"; // Change "/admin/login" to the desired URL
+		}
+	</script>
+	
+</head>
+<body>
+	<div class="login-img">
+        <img src="/images/Sign-in.svg" alt="Sign-in-vector">
+    </div>
+    <div class="login-container">
+        <input type="checkbox" id="check">
+        <div class="login-form">
+            <header>User-Login</header>
+            <form id="form" method="post">
+                <input type="text" name="email"   placeholder="Email " required />
+                <input type="password" name="password"  placeholder="Password" required />
+                <!-- Add this error message container below your form -->
+                <div id="errorMessages" style="color: red;"></div>
+                <a href="/forgetpass" id="forgot-pass">Forgot password?</a>
+                <button onclick="validateUser()" id="login-btn">Log In</button>
+                <button onclick="validateUsers()" id="login-btn">Admin Login</button>
+            </form>
+            <div class="signup">
+                <span class="signup">Don't have an account?
+                    <label for="check"><a href="/">Signup</a></label>
+                </span>
+            </div>
+            </div>
+			</div>
+       
+					<div class="mssg bg-danger">
+						<span id="check" ></span>
+					</div>
+					<div id="LangTable"><a href="/profile" id="aa"></a>
+					</div>
+		
+</body>
+</html>
+
+

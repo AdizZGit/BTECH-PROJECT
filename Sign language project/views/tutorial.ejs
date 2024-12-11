@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Sense - Learning</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/tutorial.css">
+  <script>// go to home link
+    function goToHome() {
+      window.location.href = "/data";
+    }
+    
+    // nav active links
+    document.addEventListener('DOMContentLoaded', function() {
+      var path = window.location.pathname;
+      var page = path.split("/").pop();
+    
+      var navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(function(link) {
+          if (link.getAttribute('href') === page) {
+              link.classList.add('active');
+          }
+      });
+    });
+    
+    // navigation bar
+    function showSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'flex';
+    }
+    function hideSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'none';
+    }
+    
+    // splash screen
+    document.addEventListener("DOMContentLoaded", function() {
+      // Check if the splash screen has been shown before
+      var splashShown = sessionStorage.getItem('splashShown');
+      
+      if (!splashShown) {
+        // If splash screen hasn't been shown before, show it and mark as shown
+        setTimeout(function() {
+          transitionToMain();
+          // Store in session storage that the splash screen has been shown
+          sessionStorage.setItem('splashShown', 'true');
+        }, 5000);
+      } else {
+        // If splash screen has been shown before, immediately transition to main content
+        transitionToMain();
+      }
+    });
+    
+    function transitionToMain() {
+      var splashScreen = document.querySelector('.splash-screen');
+      var mainContent = document.querySelector('.main-content');
+    
+      splashScreen.style.opacity = '0';
+      splashScreen.style.transition = 'opacity 1s ease';
+    
+      setTimeout(function() {
+        splashScreen.style.display = 'none';
+        mainContent.style.display = 'block';
+        mainContent.style.opacity = '1';
+        mainContent.style.transition = 'opacity 1s ease';
+      }, 1000);
+    }
+    function displayImage(text) {
+        // Convert the text to lowercase, replace spaces with hyphens, and remove any leading numbers
+        var imageName = text.toLowerCase().replace(/\s+/g, '-');
+        // Construct the image path
+        var imagePath = "/images/sign-images/" + imageName + ".gif";
+        // Get the image element
+        var imageElement = document.getElementById("default-image");
+        // Set the source of the image element to the constructed path
+        imageElement.src = imagePath;
+      
+        imageElement.onerror = function () {
+          // If the image does not exist, display the "not found" image
+          this.src = "/images/tutorial-not-found.png";
+          // document.getElementById("search-box").value = '';
+          // alert("No tutorial for this: " + text);
+        };
+      }
+      
+      
+      function getTheImg() {
+        // Get the value from the search box
+        var searchText = document.getElementById("search-box").value;
+        // Call displayImage with the search text
+        displayImage(searchText);
+      }
+      
+      // Event listener for the search button click
+      document.getElementById("search-btn").addEventListener("click", getTheImg);
+      
+      // Event listener for the Enter key press in the search box
+      document.getElementById("search-box").addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          getTheImg();
+        }
+      });
+      function displayImage(text) {
+        // Convert the text to lowercase, replace spaces with hyphens, and remove any leading numbers
+        var imageName = text.toLowerCase().replace(/\s+/g, '-');
+        // Construct the image path
+        var imagePath = "/images/sign-images/" + imageName + ".gif";
+        // Get the image element
+        var imageElement = document.getElementById("default-image");
+        // Set the source of the image element to the constructed path
+        imageElement.src = imagePath;
+      
+        imageElement.onerror = function () {
+          // If the image does not exist, display the "not found" image
+          this.src = "/images/tutorial-not-found.png";
+          // document.getElementById("search-box").value = '';
+          // alert("No tutorial for this: " + text);
+        };
+      }
+      
+      
+      function getTheImg() {
+        // Get the value from the search box
+        var searchText = document.getElementById("search-box").value;
+        // Call displayImage with the search text
+        displayImage(searchText);
+      }
+      
+      // Event listener for the search button click
+      document.getElementById("search-btn").addEventListener("click", getTheImg);
+      
+      // Event listener for the Enter key press in the search box
+      document.getElementById("search-box").addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          getTheImg();
+        }
+      });
+      
+       
+       
+    
+    
+    
+    
+    </script>
+  
+</head>
+
+<body>
+  <!-- header start -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img onclick="goToHome()" src="/images/favicon.png" alt="" />
+        <h1 onclick="goToHome()">Sign Sense</h1>
+        <h3>Welcome!</h3>
+        <div class="welcome-container">
+        <h3><%= name %></h3>
+        
+      </div>
+      <a href="/logout" ><input  type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
+      </div>
+      <div class="nav-links">
+        <a class="hideOnMobile" href="/tutorial">Tutorials</a>
+        <a class="hideOnMobile" href="/practise">Practice</a>
+        <a class="hideOnMobile" href="/signify-chat">Signify</a>
+        <a class="hideOnMobile" href="/about">About</a>
+        <a class="hideOnMobile" href="/contact">Contact</a>
+        <i id="menu-btn" class="ri-menu-line" onclick="showSidebar()"></i>
+      </div>
+    </nav>
+    <div class="sidebar">
+      <i id="menu-close-btn" class="ri-close-line" onclick="hideSidebar()"></i>
+      <a href="/login">Login</a>
+      <a href="/tutorial">Tutorials</a>
+      <a href="/practise">Practice</a>
+      <a href="/signify-chat">Signify</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </header>
+  <!-- HEADER ENDS -->
+
+  <!-- tutoral body stats -->
+  <main>
+    <h2 id="tutorial-title">The Learning Spot🧑‍🎓</h2>
+    <!-- tutorial container1 -->
+    <div class="tutorial-container1">
+      <div class="tutorial-content1" id="tutorial-content1">
+        <input id="search-box" type="text" placeholder="Search for tutorial" autofocus>
+        <button id="search-btn" onclick="getTheImg()">Search</button>
+        <div class="tutorial-img-displayer" id="gesture-images-container">
+          <!-- Default image -->
+          <img src="/images/tutorial-defualt.png" alt="Default Image" id="default-image" width="100%">
+        </div>
+      </div>
+      <div class="tutorial-content2">
+        <h4>Alphabets</h4>
+        <div class="alphabets" id="letter-links">
+          <a href="#tutorial-content1" onclick="displayImage('A');">A</a>
+          <a href="#tutorial-content1" onclick="displayImage('B');">B</a>
+          <a href="#tutorial-content1" onclick="displayImage('C');">C</a>
+          <a href="#tutorial-content1" onclick="displayImage('D');">D</a>
+          <a href="#tutorial-content1" onclick="displayImage('E');">E</a>
+          <a href="#tutorial-content1" onclick="displayImage('F');">F</a>
+          <a href="#tutorial-content1" onclick="displayImage('G');">G</a>
+          <a href="#tutorial-content1" onclick="displayImage('H');">H</a>
+          <a href="#tutorial-content1" onclick="displayImage('I');">I</a>
+          <a href="#tutorial-content1" onclick="displayImage('J');">J</a>
+          <a href="#tutorial-content1" onclick="displayImage('K');">K</a>
+          <a href="#tutorial-content1" onclick="displayImage('L');">L</a>
+          <a href="#tutorial-content1" onclick="displayImage('M');">M</a>
+          <a href="#tutorial-content1" onclick="displayImage('N');">N</a>
+          <a href="#tutorial-content1" onclick="displayImage('O');">O</a>
+          <a href="#tutorial-content1" onclick="displayImage('P');">P</a>
+          <a href="#tutorial-content1" onclick="displayImage('Q');">Q</a>
+          <a href="#tutorial-content1" onclick="displayImage('R');">R</a>
+          <a href="#tutorial-content1" onclick="displayImage('S');">S</a>
+          <a href="#tutorial-content1" onclick="displayImage('T');">T</a>
+          <a href="#tutorial-content1" onclick="displayImage('U');">U</a>
+          <a href="#tutorial-content1" onclick="displayImage('V');">V</a>
+          <a href="#tutorial-content1" onclick="displayImage('W');">W</a>
+          <a href="#tutorial-content1" onclick="displayImage('X');">X</a>
+          <a href="#tutorial-content1" onclick="displayImage('Y');">Y</a>
+          <a href="#tutorial-content1" onclick="displayImage('Z');">Z</a>
+
+        </div>
+      </div>
+    </div>
+    <!-- tutorial container2 -->
+    <div class="tutorial-container2">
+      <div class="tutorial-content3">
+        <h4>Most Common Phrases</h4>
+        <div class="common-phrases">
+          <a href="#search-box" onclick="displayImage(this.textContent)">Hello</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">I like pink color</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Whats up</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Shall i help you</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Lets go for lunch</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Nice to Meet you</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">What is your name</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Please call me later</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">What is today's date</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Do you have money</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Where is the bathroom</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">I am fine</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Take Care</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">I am Sorry</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Open the door</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Be Careful</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Dont Worry</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Any Questions</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Are you Hungry</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Are you Angry</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">You Are Wrong</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">There Was Traffic Jam</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Sit Down</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Stand Up</a>
+
+        </div>
+      </div>
+
+      <div class="tutorial-content4">
+        <h4>Places-Objects-Time</h4>
+        <div class="common-objects">
+          <a href="#search-box" onclick="displayImage(this.textContent)">Banana</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Cat </a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Pune </a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Mumbai </a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Police station</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">June</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">July</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">August</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Shop</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Post Office</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Punjab</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Temple</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Bridge </a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Grapes</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Banglore</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Ahemdabad</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Assam</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">December</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Banaras</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Church</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Hindu</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Temple</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Dasara</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Toilet</a>
+        </div>
+      </div>
+    </div>
+    <!-- tutorial container3 -->
+    <div class="tutorial-container3">
+      <div class="tutorial-content5">
+        <h4>Week Days</h4>
+        <div class="week-tutorial">
+          <a href="#search-box" onclick="displayImage(this.textContent)">Monday</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Tuesday</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Wednesday</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Thursday</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Friday</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Saturday</a>
+          <a href="#search-box" onclick="displayImage(this.textContent)">Sunday</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- tutoral body end -->
+
+  <!-- footer starts -->
+  <footer class="footer">
+    <p>
+      &copy; SignSense | Made with ❤️ by Team Sign Sense
+    </p>
+    <a href="#" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-instagram-fill"></i></a>
+  </footer>
+  <!-- footer ends -->
+</body>
+
+</html>

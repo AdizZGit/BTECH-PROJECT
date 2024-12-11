@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/practise.css">
+  
+  <title>Sign Sense - Practise Your Skills</title>
+  <style>
+
+
+
+.video-btn {
+    position: absolute;
+    top: 50%; /* Center the button vertically */
+    left: 50%; /* Center the button horizontally */
+    transform: translate(0%, 0%); /* Perfect center alignment */
+    width: 400px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background: rgba(6, 6, 6, 0.5);
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.video-btn i {
+    margin-right: 5px; /* Spacing between icon and text */
+}</style>
+  <script>// go to home link
+    function goToHome() {
+      window.location.href = "/data";
+    }
+    
+    // nav active links
+    document.addEventListener('DOMContentLoaded', function() {
+      var path = window.location.pathname;
+      var page = path.split("/").pop();
+    
+      var navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(function(link) {
+          if (link.getAttribute('href') === page) {
+              link.classList.add('active');
+          }
+      });
+    });
+    
+    // navigation bar
+    function showSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'flex';
+    }
+    function hideSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'none';
+    }
+    
+    // splash screen
+    document.addEventListener("DOMContentLoaded", function() {
+      // Check if the splash screen has been shown before
+      var splashShown = sessionStorage.getItem('splashShown');
+      
+      if (!splashShown) {
+        // If splash screen hasn't been shown before, show it and mark as shown
+        setTimeout(function() {
+          transitionToMain();
+          // Store in session storage that the splash screen has been shown
+          sessionStorage.setItem('splashShown', 'true');
+        }, 5000);
+      } else {
+        // If splash screen has been shown before, immediately transition to main content
+        transitionToMain();
+      }
+    });
+    
+    function transitionToMain() {
+      var splashScreen = document.querySelector('.splash-screen');
+      var mainContent = document.querySelector('.main-content');
+    
+      splashScreen.style.opacity = '0';
+      splashScreen.style.transition = 'opacity 1s ease';
+    
+      setTimeout(function() {
+        splashScreen.style.display = 'none';
+        mainContent.style.display = 'block';
+        mainContent.style.opacity = '1';
+        mainContent.style.transition = 'opacity 1s ease';
+      }, 1000);
+    }
+    
+    
+    
+    
+    
+    </script>
+</head>
+
+<body>
+  <!-- header start -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img onclick="goToHome()" src="/images/favicon.png" alt="" />
+        <h1 onclick="goToHome()">Sign Sense</h1>
+        <h3>Welcome!</h3>
+        <div class="welcome-container">
+        <h3><%= name %></h3>
+        
+      </div>
+      <a href="/logout" ><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
+      </div>
+      <div class="nav-links">
+        <a class="hideOnMobile" href="/tutorial">Tutorials</a>
+        <a class="hideOnMobile" href="/practise">Practice</a>
+        <a class="hideOnMobile" href="/signify-chat">Signify</a>
+        <a class="hideOnMobile" href="/about">About</a>
+        <a class="hideOnMobile" href="/contact">Contact</a>
+        <i id="menu-btn" class="ri-menu-line" onclick="showSidebar()"></i>
+      </div>
+    </nav>
+    <div class="sidebar">
+      <i id="menu-close-btn" class="ri-close-line" onclick="hideSidebar()"></i>
+      <a href="/login">Login</a>
+      <a href="/tutorial">Tutorials</a>
+      <a href="/practise">Practice</a>
+      <a href="/signify-chat">Signify</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </header>
+  <!-- HEADER ENDS -->
+
+  <!-- practise container starts -->
+  <main class="practise-page">
+    <h3 id="practise-title">🎯Practise your skills🥷</h3>
+    <div class="practise-container">
+      <div class="aside-sign-data">
+        <div class="sign-details">
+          <button>Remember: Practise makes improvement!</button>
+          <p id="sign-name-detail"><div id="recognizedText"></div>
+            <div id="recognizedWord"></div>
+            <div id="recognizedSentence"></div>
+            </p>
+        </div>
+        <div class="tutorial-note-container">
+          <p id="tutorial-note">
+            <span>Note:</span> If you want to get started with learning sign language, visit our tutorial page at <a href="/tutorial">tutorials</a>. There, you can find resources and exercises to help you practice and improve your sign language skills. Additionally, you can engage with the community through our <a href="/signify-chat">Signify</a> Video chat platform.
+          </p>
+        </div>
+      </div>
+      <div class="video-cam-container">
+       
+            <button id="start-video" class="video-btn"><i class="ri-play-fill"></i> Start Video</button>
+        </div>
+    
+    </div>
+  </main>
+  <!-- practise container ends -->
+
+  <!-- footer starts -->
+  <footer class="footer">
+    <p>
+      &copy; SignSense | Made with ❤️ by Team Sign Sense
+    </p>
+    <a href="#" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-instagram-fill"></i></a>
+  </footer>
+  <!-- footer ends -->
+</body>
+<script>
+  function startVideoStream() {
+    // Send an HTTP GET request to the server to start the video stream
+    fetch('/start-video')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to start video stream');
+            }
+            console.log('Video stream started successfully');
+        })
+        .catch(error => {
+            console.error('Error starting video stream:', error);
+        });
+}
+
+// Event listener for the "Start Video" button
+document.getElementById('start-video').addEventListener('click', startVideoStream);
+
+</script>
+
+
+</html>

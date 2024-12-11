@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #74e7a4;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.login-img {
+  width: 50%;
+}
+.login-container .registration-form {
+  display: none;
+}
+
+#check:checked ~ .registration-form {
+  display: block;
+}
+
+#check:checked ~ .login-form {
+  display: none;
+}
+
+#check {
+  display: none;
+}
+.login-container {
+  width: 350px;
+  height: 500px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeInLogin;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+}
+
+@keyframes fadeInLogin {
+  0% {
+    transition: all;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    transition: all;
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.login-form,
+.registration-form {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form header,
+.registration-form header {
+  font-size: 2.1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: "Oswald", sans-serif;
+}
+
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.registration-form form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.login-form input,
+.registration-form input {
+  border: 2px solid #00000066;
+  height: 2.5rem;
+  font-size: 1.1rem;
+  padding: 0rem 0.5rem;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 0.6rem;
+}
+
+#forgot-pass {
+  text-align: start;
+  margin-bottom: 0.5rem;
+  color: #000;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+#forgot-pass:hover {
+  text-decoration: underline;
+}
+
+#google-login,
+#facebook-login,
+#login-btn,
+#signup-btn {
+  padding: 0.7rem;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 550;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#login-btn {
+  background-color: black;
+  margin: 0;
+}
+
+#google-login {
+  background-color: #4285f4;
+  margin: 1rem 0rem;
+}
+
+#facebook-login {
+  background-color: #3b5998;
+}
+
+#signup-btn {
+  margin: 0.5rem 0rem;
+  background-color: black;
+}
+.signup {
+  margin: 1rem 0rem;
+  font-size: 1.1rem;
+}
+
+.signup label {
+  color: black;
+  cursor: pointer;
+}
+
+.signup label:hover {
+  text-decoration: underline;
+}
+
+#back-to-home {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+#back-to-home:hover {
+  color: rgb(225, 65, 65);
+}
+
+#password-strength {
+  width: 100%;
+  background-color: red;
+  height: 0px;
+  transition: height 0.3s ease;
+}
+
+#password-strength-container {
+  width: 100%;
+  height: 20px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#password-strength-bar {
+  height: 100%;
+  background-color: #eee;
+  transition: width 0.5s ease-out;
+}
+
+#password-strength-text {
+  color: #000;
+  font-weight: bold;
+  margin-top: -1.2rem;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  animation: slide-in 1s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+@media (max-width: 800px) {
+  body {
+    height: 90vh;
+    flex-direction: column;
+  }
+  .login-container {
+    width: 330px;
+  }
+  .login-img {
+    width: 40%;
+  }
+}

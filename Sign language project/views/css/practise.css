@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#practise-title{
+  text-align: center;
+  color: #3c4858;
+  font-size: 1.9rem;
+  font-weight: bold;
+  margin-top: 1vw;
+  text-transform: capitalize;
+}
+#practise-title img{
+  width: 1.9rem;
+}
+
+.practise-container{
+  width: 80vw;
+  height: 68vh;
+  margin:3vw 10vw;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.aside-sign-data{
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sign-details,
+.tutorial-note-container{
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  background-color: #74e7a4;
+  box-shadow: 2px 2px 20px #00000041, inset -15px -15px 40px #4ecc82;
+}
+.sign-details{
+  padding: 0.7rem;
+}
+.tutorial-note-container{
+  padding: 1rem;
+}
+.sign-details button{
+  background-color: #3c4858;
+  padding: 0.5rem 0.1rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: 600;
+}
+.sign-details p{
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0.6rem 0rem;
+}
+
+#tutorial-note{
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.4;
+}
+
+#tutorial-note > span{
+  background-color: #3c4858;
+  color: white;
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+#tutorial-note > a{
+  color:#f8312f;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#tutorial-note > a:hover{
+  text-decoration: underline;
+}
+.video-cam-container{
+  width: 65%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.camera-input{
+  width: 90%;
+  height: 100%;
+  border-radius: 15px;
+  background-color: black;
+}
+
+@media (max-width:800px) {
+  #practise-title{
+    font-size: 7.5vw;
+    margin-top: 4vw;
+  }
+  .practise-container{
+    width: 90vw;
+    height: 900px;
+    margin:5vw 5vw;
+    gap: 2vw;
+    flex-direction:column-reverse;
+  }
+  .aside-sign-data{
+    width: 100%;
+  }
+  .sign-details p{
+    margin: 1rem 0rem;
+  }
+  
+  .video-cam-container{
+    width: 100%;
+    height: 70%;
+  }
+  .camera-input{
+    width: 100%;
+    height: 100%;
+  }
+}

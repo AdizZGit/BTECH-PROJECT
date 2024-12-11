@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Sense - Signify</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/signify-circle.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/signify-chat.css">
+  <script >
+    // go to home link
+    function goToHome() {
+      window.location.href = "/data";
+    }
+    
+    // nav active links
+    document.addEventListener('DOMContentLoaded', function() {
+      var path = window.location.pathname;
+      var page = path.split("/").pop();
+    
+      var navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(function(link) {
+          if (link.getAttribute('href') === page) {
+              link.classList.add('active');
+          }
+      });
+    });
+    
+    // navigation bar
+    function showSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'flex';
+    }
+    function hideSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'none';
+    }
+    
+    // splash screen
+    document.addEventListener("DOMContentLoaded", function() {
+      // Check if the splash screen has been shown before
+      var splashShown = sessionStorage.getItem('splashShown');
+      
+      if (!splashShown) {
+        // If splash screen hasn't been shown before, show it and mark as shown
+        setTimeout(function() {
+          transitionToMain();
+          // Store in session storage that the splash screen has been shown
+          sessionStorage.setItem('splashShown', 'true');
+        }, 5000);
+      } else {
+        // If splash screen has been shown before, immediately transition to main content
+        transitionToMain();
+      }
+    });
+    
+    function transitionToMain() {
+      var splashScreen = document.querySelector('.splash-screen');
+      var mainContent = document.querySelector('.main-content');
+    
+      splashScreen.style.opacity = '0';
+      splashScreen.style.transition = 'opacity 1s ease';
+    
+      setTimeout(function() {
+        splashScreen.style.display = 'none';
+        mainContent.style.display = 'block';
+        mainContent.style.opacity = '1';
+        mainContent.style.transition = 'opacity 1s ease';
+      }, 1000);
+    }
+    
+    
+    
+    
+    
+    </script>
+</head>
+
+<body>
+  <!-- header start -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img onclick="goToHome()" src="/images/signify-circle.png" alt="" />
+        <h1 onclick="goToHome()">Signify</h1>
+        <h3>Welcome!</h3>
+        <div class="welcome-container">
+        <h3><%= name %></31>
+        
+      </div>
+      <a href="/logout" ><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
+      </div>
+      <div class="nav-links">
+        <a class="hideOnMobile" href="/tutorial">Tutorials</a>
+        <a class="hideOnMobile" href="/practise">Practice</a>
+        <a class="hideOnMobile" href="/signify-chat">Signify</a>
+        <a class="hideOnMobile" href="/about">About</a>
+        <a class="hideOnMobile" href="/contact">Contact</a>
+        <i id="menu-btn" class="ri-menu-line" onclick="showSidebar()"></i>
+      </div>
+    </nav>
+    <div class="sidebar">
+      <i id="menu-close-btn" class="ri-close-line" onclick="hideSidebar()"></i>
+      <a href="/login">Login</a>
+      <a href="/tutorial">Tutorials</a>
+      <a href="/practise">Practice</a>
+      <a href="/signify-chat">Signify</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </header>
+  <!-- HEADER ENDS -->
+
+  <!-- video chat feature starts -->
+  <div class="video-call-container">
+    <div class="video-call-heading">
+      <h1>Empowering Silence: Enter Our Deaf-Friendly Video Chat</h1>
+      <p>Experience seamless video communication with our advanced video chat feature. Connect with colleagues, friends,
+        or family from anywhere in the world.
+      </p>
+      <div id="root"></div>
+      <div class="video-call-menu">
+        <div class="meeting-dropdown">
+          <button id="new-meeting-btn"><i class="ri-video-chat-fill"></i> New Meeting</button>
+         
+        </div>
+        <div class="call-code-input">
+          <i class="ri-keyboard-box-fill"></i>
+          <input type="text"  id="roomID" placeholder="Enter a code or link">
+        </div>
+        <button id="join-btn">Connect</button>
+      </div>
+    </div>
+    <div class="video-call-feature">
+      <!-- <img src="/images/video-calling.svg" alt=""> -->
+      <img src="/images/video-call-group.svg" alt="">
+    </div>
+  </div>
+  <!-- video chat feature ends -->
+  <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('join-btn').addEventListener('click', joinMeeting);
+            document.getElementById('new-meeting-btn').addEventListener('click', createNewMeeting);
+        });
+
+        function joinMeeting() {
+            const roomID = document.getElementById('roomID').value;
+            const userID = Math.floor(Math.random() * 10000) + "";
+            const userName = "Devendra" + userID;
+            const appID = 1242646210; // Your Zego App ID
+            const serverSecret = "ed6a2b5cc34229e26ec09f0ab00e6e51"; // Your Zego Server Secret
+
+            const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, userID, userName);
+
+            const zp = ZegoUIKitPrebuilt.create(kitToken);
+            zp.joinRoom({
+                container: document.querySelector("#root"),
+                sharedLinks: [{
+                    url: window.location.protocol + '//' + window.location.host + window.location.pathname + '?roomID=' + roomID,
+                }],
+                scenario: {
+                    mode: ZegoUIKitPrebuilt.GroupCall,
+                },
+            });
+        }
+
+        function createNewMeeting() {
+          const roomID = Math.floor(Math.random() * 1000000); // Generate a random Room ID
+          document.getElementById('roomID').value = roomID; // Set the Room ID in the input field
+          joinMeeting(); // Join the newly created meeting
+      }
+    </script>
+  
+  <!-- footer starts -->
+  <footer class="footer">
+    <p>
+      &copy; SignSense | Made with ❤️ by Team Sign Sense
+    </p>
+    <a href="#" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
+    <a href="#" target="_blank"><i class="ri-instagram-fill"></i></a>
+  </footer>
+  <!-- footer ends -->
+</body>
+
+</html>

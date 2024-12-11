@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Sense - Contact Us</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/contact.css">
+  <script>
+    function goToHome() {
+      window.location.href = "/data";
+    }
+    // Function to handle form submission
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Serialize form data
+        const formData = new FormData(this);
+
+        // Send form data via fetch API
+        fetch('/submit-query', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display success or error message
+            const messageStatus = document.getElementById("message-status");
+            messageStatus.textContent = data.message;
+            if (data.success) {
+              messageStatus.style.color = "green";
+              alert("Data sent successfully!");
+            } else {
+                messageStatus.style.color = "red";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Display error message
+            const messageStatus = document.getElementById("message-status");
+            messageStatus.textContent = "An error occurred. Please try again.";
+            messageStatus.style.color = "red";
+        });
+    });
+</script>
+</head>
+
+<body>
+  <!-- header start -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img onclick="goToHome()" src="/images/favicon.png" alt="" />
+        <h1 onclick="goToHome()">Sign Sense</h1>
+        <h3>Welcome!</h3>
+        <div class="welcome-container">
+        <h3><%= name %></h3>
+        
+      </div>
+      <a href="/logout" ><input type="button" value="Log out" class="logout-btn btn-primary-soft btn"></a>
+      </div>
+      <div class="nav-links">
+        <a class="hideOnMobile" href="/tutorial">Tutorials</a>
+        <a class="hideOnMobile" href="/practise">Practice</a>
+        <a class="hideOnMobile" href="/signify-chat">Signify</a>
+        <a class="hideOnMobile" href="/about">About</a>
+        <a class="hideOnMobile" href="/contact">Contact</a>
+        <i id="menu-btn" class="ri-menu-line" onclick="showSidebar()"></i>
+      </div>
+    </nav>
+    <div class="sidebar">
+      <i id="menu-close-btn" class="ri-close-line" onclick="hideSidebar()"></i>
+      <a href="/login">Login</a>
+      <a href="/tutorial">Tutorials</a>
+      <a href="/practise">Practice</a>
+      <a href="/signify-chat">Signify</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </header>
+  <!-- HEADER ENDS -->
+
+  <!-- support us starts -->
+  <div class="support-container">
+    <h2 id="suport-header">We're changing the way people think about Deaf and Dumb People!</h2>
+    <p id="suport-detail">
+      Sign Sense aims to integrate the Deaf and Dumb minority into mainstream society by breaking down traditional
+      boundaries. Our objective is to build a more inclusive and understanding environment. All individuals,
+      regardless of hearing or speaking abilities, can fully participate in social, educational, and professional
+      activities. We think that providing accessible communication tools and resources empowers anyone to express
+      themselves, interact with others, and contribute meaningfully to the community.
+      <br>
+      <br>
+      Our team aims to promote and highlight the unique viewpoints and abilities of the Deaf and Dumb population. Join
+      us on a mission to reinvent the global community.
+    </p>
+    <img id="support-img-container" src="/images/contact-support.jpg" alt="">
+  </div>
+  <!-- support us ends -->
+
+  <!-- join us container starts -->
+  <div class="join-us-container">
+    <div class="join-us-title">
+      <div class="title-content1">
+        <img src="/images/annouce.png" alt="Join Us Image" />
+      </div>
+      <div class="title-content2">
+        <h2>Join Us!</h2>
+      </div>
+    </div>
+    <div class="join-us-details">
+      <p>
+        Sign Sense continually seeks for dedicated individuals to help us achieve our aim of promoting inclusivity and
+        accessibility for Deaf and Dumb people. We would love to hear from you if you are a teacher, a sign language
+        interpreter, or just someone who wants to help make the world a more inclusive place!
+      </p>
+      <div class="join-us-links">
+        <a id="facebook-icon" href="#" target="_blank"><i class="ri-facebook-box-fill"></i></a>
+        <a id="discord-icon" href="#" target="_blank"><i class="ri-discord-fill"></i></a>
+        <a id="instagram-icon" href="#" target="_blank"><i class="ri-instagram-fill"></i></a>
+        <a id="threads-icon" href="#" target="_blank"><i class="ri-threads-fill"></i></a>
+        <a id="reddit-icon" href="#" target="_blank"><i class="ri-reddit-fill"></i></a>
+        <a id="twitter-icon" href="#" target="_blank"><i class="ri-twitter-x-line"></i></a>
+      </div>
+    </div>
+  </div>
+  <!-- join us container ends -->
+
+  <!-- contact query starts -->
+  <div class="contact-container">
+    <div class="contact-head">
+      <h3>Get in Touch</h3>
+      <h1>Contact Us for Any Query</h1>
+      <div class="contact-links">
+        <div id="contact-link1">
+          <img src="/images/location.png" alt="location">
+          <h2>Address</h2>
+          <a href="">Address Here</a>
+        </div>
+        <div id="contact-link2">
+          <img src="/images/call.png" alt="contact">
+          <h2>Phone</h2>
+          <a href="+9193565*****">+93565*****</a>
+        </div>
+        <div id="contact-link3">
+          <img src="/images/envelope.png" alt="email">
+          <h2>Email</h2>
+          <a href="contact@signsense.com">contact@signsense.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-query-container">
+      <div id="contact-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.2093360050653!2d77.15352727137392!3d21.10421879999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd71db458081c8b%3A0x6f5c6d0859c30c7!2sWadali%20Chaturbhuj%2C%20Maharashtra%20444101!5e0!3m2!1sen!2sin!4v1656004002017!5m2!1sen!2sin"
+          width="100%" height="100%" style="border: 1px solid #00000066; outline: none;" allowfullscreen=""
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div id="contact-form">
+        <form action="/submit-query" method="post">
+          <input name="name" type="text"  placeholder="Your Name" required>
+          <input name="email" type="email"  placeholder="Your Email" required>
+          <input name="subject" type="text"  placeholder="Subject" required>
+          <textarea name="message"  type="text" placeholder="Message" required></textarea>
+          <button id="submit-query" type="submit" >Send Message</button>
+        </form>
+        <div id="message-status"></div>
+      </div>
+    </div>
+  </div>
+  <!-- contact query starts -->
+  
+  <!-- footer starts -->
+  <footer class="footer">
+    <p>
+      &copy; SignSense | Made with ❤️ by Team Sign Sense
+    </p>
+  </footer>
+  <!-- footer ends -->
+</body>
+
+</html>

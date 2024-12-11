@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Sense - Login</title>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+
+			$( "#form1" ).submit(function(event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: '/',
+					data: $('#form1').serialize(),
+					dataType: "json",
+					success: function(response){
+						//alert("a");
+						//console.log(response.Success);
+						$('#form1')[0].reset();
+
+						document.getElementById("check").innerHTML=response.Success;
+         					//ADD THIS CODE
+         					setTimeout(function(){
+         						document.getElementById("check").innerHTML="";
+         					},3000);
+         					if (response.Success=="You are regestered,You can login now.") {
+         						document.getElementById("aa").click();
+         					};
+         				},
+         				error: function() {
+         				}
+         			})
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div class="login-img">
+        <img src="/images/Sign-in.svg" alt="Sign-in-vector">
+    </div>
+	<div class="login-container">
+        
+        <div class="login-form">
+            <header>Signup</header>
+            <form id="form1"  method="post">
+                <input id="firstName" type="text" placeholder="First Name" name="firstname" required />
+                <input id="lastName" type="text" placeholder="Last Name" name="lastname" required />
+                <input id="phoneNumber" type="tel" placeholder="Enter your number" name="mobileno" required />
+                <input id="email" type="email" placeholder="Enter your email" name="email" required />
+                <input id="password" type="password" placeholder="Enter your password" name="password" required />
+				<input id="password" type="password" placeholder="Enter your password" name="passwordConf" required />
+				
+                
+				<button type="submit" id="signup-btn">Signup</button>
+			</form>
+            
+            <div class="signup">
+                <span class="signup">Already have an account?
+                    <label for="check"><a href="/login" id="aa">Login</a></label>
+                </span>
+			
+            </div>
+			</div>
+			</div>
+			
+			<div class="mssg bg-danger">
+				<span id="check"></span>
+			</div>
+		
+		
+        
+   
+</body>
+
+</html>
+

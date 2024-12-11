@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Sense - Login</title>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/login.css">
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#form").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin',
+                    data: $('#form2').serialize(),
+                    dataType: "json",
+                    success: function (response) {
+                        // Reset the form
+                        $('#form2')[0].reset();
+
+                        // Redirect to dashboard page
+                        window.location.href = '/dashboard'; // Change '/dashboard' to your actual dashboard URL
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error response
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="login-img">
+        <img src="/images/Sign-in.svg" alt="Sign-in-vector">
+    </div>
+    <div class="login-container">
+        <div class="login-form">
+            <header> Admin Login</header>
+            <form id="form2" method="post">
+                <input type="text" name="email" placeholder="Email" required />
+                <input type="password" name="password" placeholder="Password" required />
+                <button type="submit" id="login-btn">Admin Login</button>
+            </form>
+            <div class="signup">
+                <span class="signup">Back To Login As User
+                    <a href="/login">Login</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- Display error/success message -->
+    <div class="mssg bg-danger">
+        <span id="check"></span>
+    </div>
+    <div id="LangTable">
+        <a href="/profile" id="aa"></a>
+    </div>
+
+</body>
+
+</html>
